@@ -1,0 +1,89 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.0.13-rc-nt
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema vedisoftjdbc
+--
+
+CREATE DATABASE IF NOT EXISTS vedisoftjdbc;
+USE vedisoftjdbc;
+
+--
+-- Definition of table `courses`
+--
+
+DROP TABLE IF EXISTS `courses`;
+CREATE TABLE `courses` (
+  `courseid` int(10) unsigned NOT NULL auto_increment,
+  `coursename` varchar(45) NOT NULL,
+  `coursetype` varchar(45) NOT NULL,
+  PRIMARY KEY  (`courseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courses`
+--
+
+/*!40000 ALTER TABLE `courses` DISABLE KEYS */;
+INSERT INTO `courses` (`courseid`,`coursename`,`coursetype`) VALUES 
+ (1,'Java','Certificate'),
+ (2,'.NET','Certificate'),
+ (3,'PHP','Certificate'),
+ (4,'Software Engineering','Diploma'),
+ (5,'Ethical Hacking','Diploma'),
+ (6,'C ','Certificate'),
+ (7,'C++','Certificate');
+/*!40000 ALTER TABLE `courses` ENABLE KEYS */;
+
+
+--
+-- Definition of table `students`
+--
+
+DROP TABLE IF EXISTS `students`;
+CREATE TABLE `students` (
+  `studentid` int(10) unsigned NOT NULL auto_increment,
+  `studentname` varchar(45) NOT NULL,
+  `courseid` int(10) unsigned NOT NULL,
+  `regdate` date NOT NULL,
+  PRIMARY KEY  (`studentid`),
+  KEY `FK_students_1` (`courseid`),
+  CONSTRAINT `FK_students_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+/*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` (`studentid`,`studentname`,`courseid`,`regdate`) VALUES 
+ (2,'Manish Jain',1,'2015-10-23'),
+ (3,'Akash Jain',2,'2015-10-23'),
+ (4,'Sanjay Pandey',2,'2015-10-23'),
+ (5,'Shweta Malhotra',1,'2015-10-23'),
+ (6,'Shivi Dubey',1,'2015-10-23');
+/*!40000 ALTER TABLE `students` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
